@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% set active_page = 'activities' %}
+
+
+{% block title %}Activities{% endblock %}
+
+{% block content %}
+    <main class="d-flex flex-column justify-content-center align-items-center">
+        <div class="custom-container shadow">
+            <div class="container-data-wrapper">
+                <div class="my-1 d-flex justify-content-center align-items-center text-center">
+                    <p class="mb-0">Remove your activities</p>
+                    <button type="button" class="btn btn-secondary ms-3 fas fa-trash-alt"
+                            id="remove-countdown-results-btn" disabled
+                            data-bs-toggle="modal" data-bs-target="#remove-countdown-results-modal">
+                    </button>
+                </div>
+                {% if current_user.is_authenticated() %}
+                    <div class="my-1 d-flex justify-content-center align-items-center text-center">
+                        <p class="mb-0">Sync local changes</p>
+                        <button type="button" class="btn btn-secondary ms-3 fas fa-sync sync-changes-btn"
+                                id="sync-countdown-results-btn">
+                        </button>
+                    </div>
+                {% endif %}
+                <hr>
+                <div class="d-flex-column justify-content-center align-items-center text-center">
+                    <h5 class="mb-0">Filters</h5>
+                    <div class="text-align-start custom-form" id="filter-countdown">
+                        <div class="form-group custom-form-group">
+                            <label for="filter-countdown-status" class="form-label">Countdown status</label>
+                            <select id="filter-countdown-status"
+                                    class="form-select">
+                                <option value="all">All</option>
+                                <option value="success">Success</option>
+                                <option value="failure">Failure</option>
+                            </select>
+                        </div>
+                        <div class="form-group custom-form-group">
+                            <label for="filter-countdown-date-from" class="form-label">Date from</label>
+                            <input pattern="\d{4}-\d{2}-\d{2}" type="date" id="filter-countdown-date-from"
+                                   class="form-control">
+                        </div>
+                        <div class="form-group custom-form-group">
+                            <label for="filter-countdown-date-to" class="form-label">Date to</label>
+                            <input pattern="\d{4}-\d{2}-\d{2}" type="date" id="filter-countdown-date-to"
+                                   class="form-control">
+                        </div>
+                        <button class="btn form-submit-btn" id="filter-countdown-btn">Filter</button>
+                    </div>
+                </div>
+                <hr>
+                <div id="countdown-results" class="d-none">
+                </div>
+                <div id="countdown-results-pagination">
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <!-- Custom modals start -->
+    {% include 'home/_remove_activities_modal.html' %}
+    <!-- Custom modals stop -->
+
+    <!-- Custom toasts start -->
+    {% include 'activities/_sync_toast.html' %}
+    <!-- Custom toasts stop -->
+{% endblock %}
+
+
+
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/countdown-results-service.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/activities.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/models.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/tools.js') }}" type="text/javascript"></script>
+{% endblock %}
+

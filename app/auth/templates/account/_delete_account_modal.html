@@ -1,0 +1,35 @@
+<!-- Delete account modal start -->
+<div class="modal fade" id="remove-account-modal" tabindex="-1" aria-labelledby="remove-account-modal-label"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="remove-account-modal-label">Delete account</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="initial-font-size">
+                    We are sorry to hear that you want to delete an account in our service.
+                    To confirm your account removal enter below your email address: <strong
+                        class="user-select-none" id="current-user-email">{{ current_user.email }}</strong>
+                </p>
+                <form id="remove-account-form" class="text-align-start custom-form" method="POST"
+                      action="{{ url_for('auth.account_delete') }}">
+                    {{ delete_account_form.hidden_tag() }}
+                    <div class="form-group custom-form-group">
+                        {{ delete_account_form.email.label(class='form-label') }}
+                        {{ delete_account_form.email(class='form-control', id='remove-account-email') }}
+                        {{ field_error_messages(delete_account_form.email) }}
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary opacity-80" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" form="remove-account-form" class="btn custom-btn-warning"
+                        id="remove-account-modal-submit" disabled>Delete my account
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Delete account results modal stop -->

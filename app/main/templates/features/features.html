@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% set active_page = 'features' %}
+
+
+{% block title %}Features{% endblock %}
+
+{% block content %}
+    <main class="d-flex flex-column justify-content-center align-items-center">
+        <div class="custom-container shadow" id="features-container">
+            <div class="container-data-wrapper" id="features-wrapper">
+                <h1>Features</h1>
+
+                <article class="features-entity">
+                    <p>Count time down has never been so simple and easy.
+                        Just set the time and start doing what you need.</p>
+                    <img alt="Woman in yellow long sleeve shirt lying on couch." class="img-fluid rounded-2"
+                         src="{{ url_for('static', filename='images/features/features-1.jpg') }}">
+                </article>
+
+                <article class="features-entity">
+                    <p>Our app is optimized for <strong>every platform and device</strong> - you just need a browser to
+                        use it.</p>
+                    <img alt="Woman in yellow long sleeve shirt lying on couch." class="img-fluid rounded-2"
+                         src="{{ url_for('static', filename='images/features/features-2.jpg') }}">
+                </article>
+
+                <article class="features-entity">
+                    <p>Have a poor connection or transfer limit? Don't worry - just open the
+                        <a class="text-decoration-none" href="{{ url_for('main.home') }}">Timely main page</a> and you
+                        can turn off your internet connection and use the app.</p>
+                    <img alt="Woman in yellow long sleeve shirt lying on couch." class="img-fluid rounded-2"
+                         src="{{ url_for('static', filename='images/features/features-3.jpg') }}">
+                </article>
+
+                <article class="features-entity">
+                    <p>Timely is a free app and we hope it will help you to focus on <strong>what you matter</strong>.
+                    </p>
+                    <img alt="Woman in yellow long sleeve shirt lying on couch." class="img-fluid rounded-2"
+                         src="{{ url_for('static', filename='images/features/features-4.jpg') }}">
+                </article>
+
+            </div>
+        </div>
+    </main>
+
+
+{% endblock %}

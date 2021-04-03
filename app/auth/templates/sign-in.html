@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% set active_page = 'sign-in' %}
+{% from 'contact-us/_error_messages.html' import field_error_messages %}
+
+
+
+{% block title %}Sign in{% endblock %}
+{% block content %}
+
+    <main class="d-flex flex-column justify-content-center align-items-center">
+
+        {% include '_flash-messages.html' %}
+
+        <div class="custom-container shadow" id="sing-in-container">
+            <div class="container-data-wrapper" id="sing-in-wrapper">
+                <h2>Sign in</h2>
+                <small>Don't have an account? <a
+                        href="{{ url_for('auth.register') }}", class="text-decoration-none">Click here
+                    to register</a></small>
+                <form id="sign-in-form" class="text-align-start custom-form" method="POST"
+                      action="{{ url_for('auth.login') }}">
+                    {{ form.hidden_tag() }}
+                    <div class="form-group custom-form-group">
+                        {{ form.email.label(class='form-label') }}
+                        {{ form.email(class='form-control', placeholder="e.g. john@domain.com") }}
+                        {{ field_error_messages(form.email) }}
+                    </div>
+                    <div class="form-group custom-form-group">
+                        {{ form.password.label(class='form-label') }}
+                        {{ form.password(class='form-control', placeholder="***********") }}
+                        {{ field_error_messages(form.password) }}
+                        <small>Don't remember password? <a href="{{ url_for('auth.password_reset') }}"class="text-decoration-none">Reset it</a> </small>
+                    </div>
+                    <hr>
+                    <button class="btn form-submit-btn" id="form-submit-btn">Sign in
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+
+{% endblock %}
+
+
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/models.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/tools.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/sign-in.js') }}" type="text/javascript"></script>
+{% endblock %}

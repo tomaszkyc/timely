@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% set active_page = 'home' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <main class="d-flex flex-column justify-content-center align-items-center">
+
+        {% include '_flash-messages.html' %}
+
+        <div class="custom-container shadow countdown-container" id="countdown-container">
+            <div class="container-data-wrapper" id="countdown-wrapper">
+                <label for="time-range" class="time-range-label">Let's do some countdown!</label>
+                <input value="60" type="range" step="1" min="1" max="120" class="form-control-range custom-range"
+                       name="time-range" id="time-range">
+                <div class="countdown-fields">
+                    <input type="text" class="countdown-field user-select-none" readonly id="min-dozens">
+                    <input type="text" class="countdown-field user-select-none" readonly id="min-unity">
+                    <span class="countdown-field-colon">:</span>
+                    <input type="text" class="countdown-field user-select-none" readonly id="sec-dozens">
+                    <input type="text" class="countdown-field user-select-none" readonly id="sec-unity">
+                </div>
+                <button type="button" class="btn countdown-start-btn" id="countdown-button">Start the
+                    countdown!
+                </button>
+                <div class="progress countdown-progressbar-wrapper d-none" id="countdown-progressbar-wrapper">
+                    <div class="progress-bar countdown-progressbar" role="progressbar" id="progress-bar"
+                         style="width: 10%;"
+                         aria-valuenow="50"
+                         aria-valuemin="0" aria-valuemax="100">1%
+                    </div>
+                </div>
+                <div class="countdown-cite d-none text-center d-flex justify-content-center align-items-center"
+                     id="countdown-cite">
+                </div>
+            </div>
+        </div>
+        <div class="custom-container shadow m-0" id="countdown-results">
+            <div class="container-data-wrapper d-none" id="countdown-results-wrapper">
+                <div class="d-flex justify-content-center align-items-center text-center">
+                    <h4 class="mb-0">Your last activities</h4>
+                    <button type="button" class="btn btn-secondary ms-3 fas fa-trash-alt"
+                            id="remove-countdown-results-btn"
+                            data-bs-toggle="modal" data-bs-target="#remove-countdown-results-modal">
+                    </button>
+                </div>
+                <small>Go to <a href="{{ url_for('main.activities') }}"
+                             class="text-decoration-none">My activities page</a> to see all data.</small>
+                <hr>
+            </div>
+        </div>
+
+
+
+        {% include 'home/_why_timely.html' %}
+    </main>
+
+
+    <!-- Custom modals start -->
+    {% include 'home/_remove_activities_modal.html' %}
+    <!-- Custom modals stop -->
+{% endblock %}
+
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/main.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/models.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/tools.js') }}" type="text/javascript"></script>
+
+{% endblock %}
+

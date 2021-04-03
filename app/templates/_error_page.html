@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% set active_page = 'features' %}
+
+
+{% block title %}Features{% endblock %}
+
+{% block content %}
+    <main class="d-flex flex-column justify-content-center align-items-center">
+        <div class="custom-container shadow" id="error-container">
+            <div class="container-data-wrapper" id="error-wrapper">
+
+                <h2>Uuuuppsss - something went wrong...</h2>
+                <p>We see you encountered an error we didn't expect to happen. 😭</p>
+
+                <img alt="A cartoon with a dog and fire everywhere. Source: https://giphy.com/gifs/memecandy-eIfYQTaK3148kmMCxT"
+                     class="img-fluid rounded-2"
+                     src="{{ url_for('static', filename='images/error-page/error-page.gif') }}">
+
+                <p class="custom-margin-top">Instead of this go to our <a href="{{ url_for('main.home') }}"
+                                                                          class="text-decoration-none">main
+                    page</a> or come back to us later.</p>
+
+            </div>
+        </div>
+    </main>
+{% endblock %}

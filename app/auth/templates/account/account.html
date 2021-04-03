@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% set active_page = 'account' %}
+{% from 'contact-us/_error_messages.html' import field_error_messages %}
+
+
+
+{% block title %}Account{% endblock %}
+{% block content %}
+
+    <main class="d-flex flex-column justify-content-center align-items-center">
+        {% include '_flash-messages.html' %}
+
+        <div class="custom-container shadow" id="account-container">
+            <div class="container-data-wrapper" id="account-wrapper">
+                <h2>Account details</h2>
+                <hr>
+                <form id="account-details-form" class="text-align-start custom-form" method="POST"
+                      action="{{ url_for('auth.account_update') }}">
+                    {{ change_account_details_form.hidden_tag() }}
+                    <div class="form-group custom-form-group">
+                        {{ change_account_details_form.name.label(class='form-label') }}
+                        {{ change_account_details_form.name(class='form-control', placeholder="John") }}
+                        {{ field_error_messages(change_account_details_form.name) }}
+                    </div>
+                    <div class="form-group custom-form-group">
+                        {{ change_account_details_form.email.label(class='form-label') }}
+                        {{ change_account_details_form.email(class='form-control', placeholder="e.g. john@domain.com") }}
+                        {{ field_error_messages(change_account_details_form.email) }}
+                    </div>
+                    <div class="form-group custom-form-group">
+                        {{ change_account_details_form.password.label(class='form-label') }}
+                        {{ change_account_details_form.password(class='form-control', placeholder="***********") }}
+                        {{ field_error_messages(change_account_details_form.password) }}
+                    </div>
+                    <button class="btn form-submit-btn" id="form-submit-btn">Update account details
+                    </button>
+                </form>
+                <br>
+                <hr>
+                <h2>Delete account</h2>
+                <p class="initial-font-size">If you don't want to stay longer with us - click the button below to
+                    delete your account.</p>
+                    <button type="button" class="btn custom-btn-warning"
+                    data-bs-toggle="modal" data-bs-target="#remove-account-modal">Delete account</button>
+            </div>
+        </div>
+    </main>
+
+
+
+    <!-- Custom modals start -->
+    {% with delete_account_form=delete_account_form %}
+        {% include 'account/_delete_account_modal.html' %}
+    {% endwith %}
+    <!-- Custom modals stop -->
+
+{% endblock %}
+
+
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/models.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/tools.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/account.js') }}" type="text/javascript"></script>
+{% endblock %}
